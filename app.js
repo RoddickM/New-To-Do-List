@@ -28,13 +28,13 @@ function displayItems(){
     document.querySelector(".to-do-list").innerHTML = items
     activateDeleteListeners()
     activateEditListeners()
-    // activateSaveListeners()
-    // activateCancelListeners()
+    activateSaveListeners()
+    activateCancelListeners()
 }
 
 function activateDeleteListeners(){
     let deleteBtn = document.querySelectorAll(".deleteBtn")
-    deleteBtn.forEach((db, i = 0) => {
+    deleteBtn.forEach((db, i) => {
         db.addEventListener("click", () => { deleteItem(i) })
     })
 }
@@ -43,7 +43,7 @@ function activateEditListeners(){
     const editBtn = document.querySelectorAll(".editBtn")
     const updateController = document.querySelectorAll(".update-controller")
     const inputs = document.querySelectorAll(".input-controller textarea")
-    editBtn.forEach((eb, i = 0) => {
+    editBtn.forEach((eb, i) => {
         eb.addEventListener("click", () => {
             updateController[i].style.display = "block"
             inputs[i].disabled = false
@@ -54,9 +54,21 @@ function activateEditListeners(){
 function activateSaveListeners(){
     const saveBtn = document.querySelectorAll(".save-button")
     const inputs = document.querySelectorAll(".input-controller textarea")
-    saveBtn.forEach((sb, i = 0) => {
+    saveBtn.forEach((sb, i) => {
         sb.addEventListener("click", () => {
             updateItem(inputs[i].value, i)
+        })
+    })
+}
+
+function activateCancelListeners(){
+    const cancelBtn = document.querySelectorAll(".cancel-button")
+    const updateController = document.querySelectorAll(".update-controller")
+    const inputs = document.querySelectorAll(".input-controller textarea")
+    cancelBtn.forEach((cb, i) => {
+        cb.addEventListener("click", () => {
+            updateController[i].style.display = "none"
+            inputs[i].disabled = true
         })
     })
 }
